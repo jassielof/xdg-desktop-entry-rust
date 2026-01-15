@@ -1,0 +1,6 @@
+[package]
+name = "xdg-desktop-entry"
+version = "0.1.0+spec-1.5"
+edition = "2024"
+
+[dependencies]

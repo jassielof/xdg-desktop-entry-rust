@@ -1,0 +1,12 @@
+version: "3"
+
+vars:
+  XDG_DESKTOP_ENTRY_SPECIFICATION: https://xdg.pages.freedesktop.org/xdg-specs/desktop-entry/latest-single/
+
+tasks:
+  specification:
+    desc: Markdown the XDG Desktop Entry specification
+    aliases:
+      - spec
+    cmds:
+      - markitdown {{.XDG_DESKTOP_ENTRY_SPECIFICATION}} -o SPECIFICATION.md

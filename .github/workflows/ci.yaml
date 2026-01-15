@@ -14,29 +14,36 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v6
+            - uses: actions/checkout@v4
             - name: Build
-              run: cargo build
+              run: cargo build --verbose
             - name: Run tests
-              run: cargo test
+              run: cargo test --verbose
 
-    documentation:
+    docs:
         runs-on: ubuntu-latest
-        # Only run on push to main, not on PRs
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main'
+        permissions:
+            contents: read
+            pages: write
+            id-token: write
 
         steps:
-            - uses: actions/checkout@v6
+            - uses: actions/checkout@v4
 
             - name: Build documentation
-              run: cargo doc --no-deps --document-private-items
+              run: cargo doc --no-deps --verbose
 
-            - name: Add redirect
-              run: echo '<meta http-equiv="refresh" content="0;url=your_crate_name/index.html">' > target/doc/index.html
+            - name: Add redirect index
+              run: |
+                CRATE_NAME=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]' | cut -f2 -d"/")
+                echo "<meta http-equiv=\"refresh\" content=\"0; url=${CRATE_NAME//-/_}\">" > target/doc/index.html
+                touch target/doc/.nojekyll
+
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                path: target/doc
 
             - name: Deploy to GitHub Pages
-              uses: peaceiris/actions-gh-pages@v4
-              with:
-                  github_token: ${{ secrets.GITHUB_TOKEN }}
-                  publish_dir: ./target/doc
-                  force_orphan: true
+              uses: actions/deploy-pages@v4

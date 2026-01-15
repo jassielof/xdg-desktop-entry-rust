@@ -1,0 +1,42 @@
+name: CI
+
+on:
+    push:
+        branches: ["main"]
+    pull_request:
+        branches: ["main"]
+
+env:
+    CARGO_TERM_COLOR: always
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v6
+            - name: Build
+              run: cargo build
+            - name: Run tests
+              run: cargo test
+
+    documentation:
+        runs-on: ubuntu-latest
+        # Only run on push to main, not on PRs
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+        steps:
+            - uses: actions/checkout@v6
+
+            - name: Build documentation
+              run: cargo doc --no-deps --document-private-items
+
+            - name: Add redirect
+              run: echo '<meta http-equiv="refresh" content="0;url=your_crate_name/index.html">' > target/doc/index.html
+
+            - name: Deploy to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v4
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./target/doc
+                  force_orphan: true

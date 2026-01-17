@@ -1,0 +1,34 @@
+[Desktop Entry]
+Type=Application
+Version=1.5
+Name=Feature Rich App
+Name[de]=Funktionsreiche App
+Name[ja]=機能豊富なアプリ
+GenericName=Advanced Tool
+GenericName[de]=Erweitertes Werkzeug
+Comment=Demonstrates many desktop entry features
+Comment[de]=Zeigt viele Desktop-Entry-Funktionen
+Icon=application
+TryExec=/usr/bin/feature-rich-app
+Exec=feature-rich-app %U
+Path=/home/user/apps
+Terminal=false
+StartupNotify=true
+StartupWMClass=FeatureRichApp
+OnlyShowIn=GNOME;KDE;
+Categories=Office;Productivity;
+MimeType=application/x-custom;text/plain;
+Keywords=feature;rich;advanced;
+Keywords[de]=Funktion;reich;erweitert;
+Actions=edit;view;
+
+[Desktop Action edit]
+Name=Edit Mode
+Name[de]=Bearbeitungsmodus
+Exec=feature-rich-app --edit
+
+[Desktop Action view]
+Name=View Mode
+Name[de]=Ansichtsmodus
+Exec=feature-rich-app --view
+Icon=document-open

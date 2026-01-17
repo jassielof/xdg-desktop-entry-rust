@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Hidden Application
+Exec=hidden-app
+Hidden=true
+NoDisplay=true
+Comment=This application is hidden from menus

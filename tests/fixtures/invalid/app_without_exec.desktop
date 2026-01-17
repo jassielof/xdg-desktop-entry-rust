@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=App Without Exec
+# Missing both Exec and DBusActivatable

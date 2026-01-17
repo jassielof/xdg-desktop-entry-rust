@@ -1,8 +1,8 @@
 # XDG Desktop Entry for Rust
 
-XDG Desktop Entry file format library for Rust.
+XDG Desktop Entry for Rust.
 
-## Specification reference
+## References
 
 Revised against version 1.5 published on 2020-04-27, check the [SPECIFICATION.md](SPECIFICATION.md).
 

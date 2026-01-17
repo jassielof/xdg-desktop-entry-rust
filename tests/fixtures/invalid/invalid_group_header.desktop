@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Invalid Group Header
+Exec=test-app
+
+[Invalid Group Header Without Closing Bracket
+Key=Value

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Invalid Line Format
+Exec=test-app
+This line has no equals sign
+Key=Value
